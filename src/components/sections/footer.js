@@ -1,43 +1,48 @@
 import React from "react"
 import styled from "styled-components"
+import AnchorLink from "react-anchor-link-smooth-scroll"
 
 import { Container } from "../global"
 
+const openInNewTab = (url) => {
+  const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+  if (newWindow) newWindow.opener = null
+}
+
 const Footer = () => (
   <FooterWrapper id="footer">
+    <BrandContainer>
+      <Logo>feels slo, but good slo</Logo>
+    </BrandContainer>
     <FooterColumnContainer>
       <FooterColumn>
-        <span>Features</span>
+        <span>built by</span>
         <ul>
-          <li>Automation</li>
-          <li>Rewards</li>
+          <li>
+            <a href="https://www.nomadriver.co">
+                nomad river
+              </a>
+          </li>
         </ul>
       </FooterColumn>
       <FooterColumn>
-        <span>Resources</span>
+        <span>supported by</span>
         <ul>
-          <li>Compare</li>
-          <li>Blog</li>
+          <li>
+            <a href="http://www.centro.portugal2020.pt/">
+                PORTUGAL 2020 
+              </a>
+          </li>
         </ul>
       </FooterColumn>
       <FooterColumn>
-        <span>Company</span>
+        <span>social</span>
         <ul>
-          <li>About Us</li>
-          <li>Careers</li>
-        </ul>
-      </FooterColumn>
-      <FooterColumn>
-        <span>Social</span>
-        <ul>
-          <li>LinkedIn</li>
-          <li>Instagram</li>
+          <li>linkedIn</li>
+          <li>instagram</li>
         </ul>
       </FooterColumn>
     </FooterColumnContainer>
-    <BrandContainer>
-      <Logo>Finance</Logo>
-    </BrandContainer>
   </FooterWrapper>
 )
 
@@ -76,7 +81,7 @@ const FooterColumnContainer = styled(Container)`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 32px;
-  justify-content: start;
+  padding-top: 2rem;
   @media (max-width: ${props => props.theme.screen.sm}) {
     grid-template-columns: 1fr 1fr;
     grid-gap: 32px;

@@ -8,7 +8,7 @@ import { Container } from "../global"
 const Header = () => {
   const data = useStaticQuery(graphql`
     query {
-      file(sourceInstanceName: { eq: "product" }, name: { eq: "green-skew" }) {
+      file(sourceInstanceName: { eq: "product" }, name: { eq: "plan-again" }) {
         childImageSharp {
           fluid(maxWidth: 1000) {
             ...GatsbyImageSharpFluid_tracedSVG
@@ -26,30 +26,24 @@ const Header = () => {
     <HeaderWrapper id="top">
       <Container>
         <Flex>
+        <ImageWrapper>
+            <StyledImage fluid={data.file.childImageSharp.fluid} />
+            <br/>
+            <HeaderButton>plan a new trip</HeaderButton>
+          </ImageWrapper>
+          <Divider></Divider>
           <HeaderTextGroup>
-            <Subtitle>Personal Finance</Subtitle>
             <h1>
-              All your money,
-              <br />
-              one account
+              wherever you go, go slo
             </h1>
             <h2>
-              We're building next generation personal finance tools. Sign up to
-              get early access.
+              enter your phone number below to get started. the easiest trip of your life gets planned today. for free.
             </h2>
             <HeaderForm onSubmit={handleSubmit}>
-              <HeaderInput placeholder="Your email" />
-              <HeaderButton>Early access</HeaderButton>
+              <HeaderInput placeholder="your phone number" />
+              <HeaderButton>start</HeaderButton>
             </HeaderForm>
-            <FormSubtitle>
-              Already have a beta account?{" "}
-              <FormSubtitleLink to="/">Sign in</FormSubtitleLink>
-            </FormSubtitle>
           </HeaderTextGroup>
-          <ImageWrapper>
-            <StyledImage fluid={data.file.childImageSharp.fluid} />
-            <br />
-          </ImageWrapper>
         </Flex>
       </Container>
     </HeaderWrapper>
@@ -59,7 +53,7 @@ const Header = () => {
 export default Header
 
 const HeaderWrapper = styled.header`
-  background-color: #f8f8f8;
+  background-color: #F7ECDF;
   padding: 160px 0 80px 0;
   position: relative;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 5vw));
@@ -73,8 +67,19 @@ const Subtitle = styled.h5`
   margin-bottom: 16px;
 `
 
+const Divider = styled.div`
+  height: 100%;
+  border-left: 2px solid ${props => props.theme.color.primary};
+  width: 5px;
+  padding-left:2rem;
+  `
+
 const HeaderTextGroup = styled.div`
   margin: 0;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  
 
   > div {
     width: 120%;
@@ -104,7 +109,7 @@ const Flex = styled.div`
   display: grid;
   justify-content: space-between;
   align-content: center;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 25% 1fr 75%;
   @media (max-width: ${props => props.theme.screen.md}) {
     grid-template-columns: 1fr;
     grid-gap: 64px;
@@ -115,7 +120,7 @@ const HeaderForm = styled.form`
   display: flex;
   flex-direction: row;
   padding-bottom: 16px;
-
+  padding-top: 150px;
   @media (max-width: ${props => props.theme.screen.sm}) {
     flex-direction: column;
   }
@@ -167,8 +172,8 @@ const HeaderButton = styled.button`
   letter-spacing: 1px;
   height: 60px;
   display: block;
-  margin-left: 8px;
-  text-transform: uppercase;
+  margin-left: 12px;
+  text-transform: lowercase;
   cursor: pointer;
   white-space: nowrap;
   background: ${props => props.theme.color.secondary};
@@ -189,20 +194,24 @@ const HeaderButton = styled.button`
   }
 `
 const ImageWrapper = styled.div`
-  justify-self: end;
-  align-self: center;
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+align-items: self-start;
+padding-bottom: 16px;
   @media (max-width: ${props => props.theme.screen.md}) {
     justify-self: center;
+    display:none
   }
 `
 
 const StyledImage = styled(Img)`
-  width: 500px;
+  width: 220px;
   @media (max-width: ${props => props.theme.screen.md}) {
-    width: 400px;
+    width: 180px;
   }
   @media (max-width: ${props => props.theme.screen.sm}) {
-    width: 300px;
+    width: 100px;
     display: none;
   }
 `
