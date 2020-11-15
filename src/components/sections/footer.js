@@ -102,6 +102,16 @@ const FooterColumn = styled.div`
       margin-bottom: 12px;
       font-family: ${props => props.theme.font.normal};
       font-size: 15px;
+      a {
+        color: ${props => props.theme.color.primary};
+        text-decoration: none;
+      }
+      a:hover{
+        text-decoration:underline;
+      }
+      a:visited{
+        text-decoration: none;
+      }
     }
   }
 `

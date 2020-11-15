@@ -8,7 +8,11 @@ import { Container } from "../../global"
 
 
 const Header = () => {
-  
+  const [state, setState] = useState({
+    number: "cenas",
+    name: "",
+  });
+
   const data = useStaticQuery(graphql`
     query {
       file(sourceInstanceName: { eq: "product" }, name: { eq: "plan-again" }) {
@@ -22,22 +26,17 @@ const Header = () => {
   `);
 
 // const client = require('twilio')(accountSid, authToken); 
-  
 
-  const [state, setState] = useState({
-    number: "",
-    name: "",
-  });
 
   const handleSubmit = event => {
     event.preventDefault()
-    var number = state.number;
+    var m_number = state.number;
 
-    fetch('https://twilio-integration.colivetree.workers.dev/?customer='+number)
+    fetch('https://twilio-integration.colivetree.workers.dev/?customer='+m_number)
         .then(response => response.json())
     console.log(state.number);
 
-    setState({m_number: number})
+    setState({number: m_number,name:m_number})
   };
   
   const handleInputChange = event=> {
@@ -46,7 +45,8 @@ const Header = () => {
     const name = target.name;
 
     setState({
-      number: value
+      number: value,
+      name:""
     });
   };
 
@@ -61,16 +61,11 @@ const Header = () => {
           </ImageWrapper>
           <Divider></Divider>
           <HeaderTextGroup>
-            <h1>
-              wherever you go, go slo
-            </h1>
-            <h2>
-              we plan the trip of your life.
-            </h2>
-            <h2>
-            for free.
-            </h2>
-            <h2>enter your phone number below to get started.</h2>
+            <h1> wherever you go, go slo </h1>
+            <h2> we plan the trip of your life. </h2>
+            <h2> for free. </h2>
+            <h2>text us your phone number below to get started.</h2>
+            <Response isVisible={state.name}>{state.name}</Response>
             <HeaderForm onSubmit={handleSubmit}>
               <HeaderInput placeholder="your phone number" onChange={handleInputChange}/>
               <HeaderButton>start</HeaderButton>
@@ -152,7 +147,22 @@ p {
 }
 `
 
+const Response = styled.div`
+margin-bottom: 0 !important;
+margin-top:1rem;
+font-size: 22px;
+line-height: 30px;
+padding: 1rem;
+align-self:flex-end;
+background-color: #cab2af;
+color:white;
+width:fit-content !important;
+border-radius: 4px;
+display: ${props=>props.isVisible===""?"none":"block"};
+${props => props.theme.font_size.regular};`
+
 const Flex = styled.div`
+
 display: grid;
 justify-content: space-between;
 align-content: center;
