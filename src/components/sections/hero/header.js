@@ -35,7 +35,9 @@ const Header = () => {
 
     fetch('https://twilio-integration.colivetree.workers.dev/?customer='+number)
         .then(response => response.json())
-    console.log(state.number+" "+state.name);
+    console.log(state.number);
+
+    setState({m_number: number})
   };
   
   const handleInputChange = event=> {
@@ -44,8 +46,7 @@ const Header = () => {
     const name = target.name;
 
     setState({
-      number: value,
-      name:name,
+      number: value
     });
   };
 
@@ -64,8 +65,12 @@ const Header = () => {
               wherever you go, go slo
             </h1>
             <h2>
-              the trip of your life gets planned today. for free. enter your phone number below to get started.
+              we plan the trip of your life.
             </h2>
+            <h2>
+            for free.
+            </h2>
+            <h2>enter your phone number below to get started.</h2>
             <HeaderForm onSubmit={handleSubmit}>
               <HeaderInput placeholder="your phone number" onChange={handleInputChange}/>
               <HeaderButton>start</HeaderButton>
@@ -122,14 +127,14 @@ h1 {
 }
 
 h2 {
-  margin-bottom: 24px;
+  margin-bottom: 0;
   marging-left:12px;
   font-size: 22px;
   line-height: 30px;
-  padding: 2rem;
+  padding: 1rem;
   background-color: #8C7A78;
   color:white;
-  width:70%;
+  width:fit-content;
   border-radius: 4px;
   ${props => props.theme.font_size.regular};
 }
@@ -238,7 +243,7 @@ outline: 0px;
 const ImageWrapper = styled.div`
 display: flex;
 flex-direction: column;
-justify-content: flex-end;
+justify-content: space-between;
 align-items: self-start;
 padding-bottom: 16px;
 @media (max-width: ${props => props.theme.screen.md}) {

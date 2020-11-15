@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Keegan Burkett <keegan.t.marciniak@gmail.com>",
   "dependencies": {
+    "axios": "^0.21.0",
     "fetch": "^1.1.0",
     "fs": "^0.0.1-security",
     "gatsby": "^2.24.47",
