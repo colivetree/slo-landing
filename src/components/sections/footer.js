@@ -30,16 +30,22 @@ const Footer = () => (
         <ul>
           <li>
             <a href="http://www.centro.portugal2020.pt/">
-                PORTUGAL 2020 
+                PORTUGAL 2020
               </a>
           </li>
         </ul>
       </FooterColumn>
       <FooterColumn>
+        <span>read our</span>
+        <ul>
+          <li><a href="http://blog.slo.travel/blog">blog</a></li>
+        </ul>
+      </FooterColumn>
+      <FooterColumn>
         <span>social</span>
         <ul>
-          <li>linkedIn</li>
-          <li>instagram</li>
+          <li><a href="http://www.facebook.com/wegoslo">facebook</a></li>
+          <li><a href="http://www.instagram.com/wegoslo">instagram</a></li>
         </ul>
       </FooterColumn>
     </FooterColumnContainer>
