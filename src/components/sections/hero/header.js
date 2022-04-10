@@ -45,7 +45,8 @@ const Header = () => {
   const handleInputChange = phone => {
     const value = phone;
     setState({
-      number: value
+      number: value,
+      name:""
     });
   };
 
