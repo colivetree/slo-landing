@@ -2,6 +2,8 @@ import React, { useState, useEffect, Component } from "react"
 import styled from "styled-components"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import Img from "gatsby-image"
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/material.css'
 
 import { Container } from "../../global"
 
@@ -9,8 +11,8 @@ import { Container } from "../../global"
 
 const Header = () => {
   const [state, setState] = useState({
-    number: "cenas",
-    name: "",
+    number: "34919900989",
+    name:""
   });
 
   const data = useStaticQuery(graphql`
@@ -25,7 +27,7 @@ const Header = () => {
     }
   `);
 
-// const client = require('twilio')(accountSid, authToken); 
+// const client = require('twilio')(accountSid, authToken);
 
 
   const handleSubmit = event => {
@@ -38,15 +40,12 @@ const Header = () => {
 
     setState({number: m_number,name:m_number})
   };
-  
-  const handleInputChange = event=> {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
+  const [value, setValue] = useState()
 
+  const handleInputChange = phone => {
+    const value = phone;
     setState({
-      number: value,
-      name:""
+      number: value
     });
   };
 
@@ -67,7 +66,14 @@ const Header = () => {
             <h2>text us your phone number below to get started.</h2>
             <Response isVisible={state.name}>{state.name}</Response>
             <HeaderForm onSubmit={handleSubmit}>
-              <HeaderInput placeholder="your phone number" onChange={handleInputChange}/>
+            <PhoneInput
+              country={'es'}
+              regions={'europe'}
+              value={state.number}
+              onChange={handleInputChange}
+              specialLabel={"enter your phone number"}
+              />
+              <br/>
               <HeaderButton>start</HeaderButton>
             </HeaderForm>
           </HeaderTextGroup>
@@ -82,7 +88,6 @@ const HeaderWrapper = styled.header`
 background-color: #F7ECDF;
 padding: 160px 0 80px 0;
 position: relative;
-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 5vw));
 @media (max-width: ${props => props.theme.screen.md}) {
 }
 `
@@ -274,4 +279,3 @@ width: 220px;
 `
 
 export default Header
-
